@@ -20,13 +20,71 @@ import axios from 'axios'
 import { USER_API_END_POINT } from './utils/constant'
 import { useEffect } from 'react'
 import { setLoading, setUser } from './redux/authSlice'
-
+import Layout from './components/Layout';
 
 const appRouter = createBrowserRouter([
   {
     path: '/',
-    element: <Home />
+    element: <Layout />,   // MAIN LAYOUT
+    children: [
+      {
+        path: '/',
+        element: <Home />
+      },
+      {
+        path: '/jobs',
+        element: <Jobs />
+      },
+      {
+        path: '/browse',
+        element: <Browse />
+      },
+      {
+        path: '/profile',
+        element: <Profile />
+      },
+      {
+        path: '/saved',
+        element: <SavedJobs />
+      },
+      {
+        path: '/description/:id',
+        element: <JobDescription />
+      },
+
+      // admin routes
+      {
+        path: "/admin/companies",
+        element: <ProtectedRoute><Companies /></ProtectedRoute>
+      },
+      {
+        path: "/admin/companies/create",
+        element: <ProtectedRoute><CompanyCreate /></ProtectedRoute>
+      },
+      {
+        path: "/admin/companies/:id",
+        element: <ProtectedRoute><CompanySetup /></ProtectedRoute>
+      },
+      {
+        path: "/admin/jobs",
+        element: <ProtectedRoute><AdminJobs /></ProtectedRoute>
+      },
+      {
+        path: "/admin/jobs/create",
+        element: <ProtectedRoute><PostJob /></ProtectedRoute>
+      },
+      {
+        path: "/admin/jobs/:id",
+        element: <ProtectedRoute><PostJob /></ProtectedRoute>
+      },
+      {
+        path: "/admin/jobs/:id/applicants",
+        element: <ProtectedRoute><Applicants /></ProtectedRoute>
+      },
+    ]
   },
+
+  // Auth routes (NO navbar)
   {
     path: '/login',
     element: <Login />
@@ -34,59 +92,74 @@ const appRouter = createBrowserRouter([
   {
     path: '/signup',
     element: <Signup />
-  },
-  {
-    path: "/jobs",
-    element: <Jobs />
-  },
-  {
-    path: "/description/:id",
-    element: <JobDescription />
-  },
-  {
-    path: "/browse",
-    element: <Browse />
-  },
-  {
-    path: "/profile",
-    element: <Profile />
-  },
-  {
-    path: "/saved",
-    element: <SavedJobs />
-  },
+  }
+]);
 
-  //  admin routes
-  {
-    path: "/admin/companies",
-    element: <ProtectedRoute><Companies /></ProtectedRoute>
-  },
-  {
-    path: "/admin/companies/create",
-    element: <ProtectedRoute><CompanyCreate /></ProtectedRoute>
-  },
-  {
-    path: "/admin/companies/:id",
-    element: <ProtectedRoute><CompanySetup /></ProtectedRoute>
-  },
-  {
-    path: "/admin/jobs",
-    element: <ProtectedRoute><AdminJobs /></ProtectedRoute>
-  },
-  {
-    path: "/admin/jobs/create",
-    element: <ProtectedRoute><PostJob /></ProtectedRoute>
-  },
-  {
-    path: "/admin/jobs/:id",
-    element: <ProtectedRoute><PostJob /></ProtectedRoute>
-  },
-  {
-    path: "/admin/jobs/:id/applicants",
-    element: <ProtectedRoute><Applicants /></ProtectedRoute>
-  },
+// const appRouter = createBrowserRouter([
+//   {
+//     path: '/',
+//     element: <Home />
+//   },
+//   {
+//     path: '/login',
+//     element: <Login />
+//   },
+//   {
+//     path: '/signup',
+//     element: <Signup />
+//   },
+//   {
+//     path: "/jobs",
+//     element: <Jobs />
+//   },
+//   {
+//     path: "/description/:id",
+//     element: <JobDescription />
+//   },
+//   {
+//     path: "/browse",
+//     element: <Browse />
+//   },
+//   {
+//     path: "/profile",
+//     element: <Profile />
+//   },
+//   {
+//     path: "/saved",
+//     element: <SavedJobs />
+//   },
 
-])
+//   //  admin routes
+//   {
+//     path: "/admin/companies",
+//     element: <ProtectedRoute><Companies /></ProtectedRoute>
+//   },
+//   {
+//     path: "/admin/companies/create",
+//     element: <ProtectedRoute><CompanyCreate /></ProtectedRoute>
+//   },
+//   {
+//     path: "/admin/companies/:id",
+//     element: <ProtectedRoute><CompanySetup /></ProtectedRoute>
+//   },
+//   {
+//     path: "/admin/jobs",
+//     element: <ProtectedRoute><AdminJobs /></ProtectedRoute>
+//   },
+//   {
+//     path: "/admin/jobs/create",
+//     element: <ProtectedRoute><PostJob /></ProtectedRoute>
+//   },
+//   {
+//     path: "/admin/jobs/:id",
+//     element: <ProtectedRoute><PostJob /></ProtectedRoute>
+//   },
+//   {
+//     path: "/admin/jobs/:id/applicants",
+//     element: <ProtectedRoute><Applicants /></ProtectedRoute>
+//   },
+
+// ])
 
 function App() {
 

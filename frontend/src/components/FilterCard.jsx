@@ -11,7 +11,7 @@ const getRole = (title) => {
 };
 
 
-const FilterCard = () => {
+const FilterCard = ({isMobile = false, setShowFilters }) => {
     const dispatch = useDispatch();
     const { allJobs } = useSelector(store => store.job);
 
@@ -69,7 +69,7 @@ const FilterCard = () => {
     }, [filters]);
 
     return (
-        <div className="w-[260px] min-w-[240px] bg-white p-4 rounded-lg border shadow-sm h-fit sticky top-20">
+        <div className="w-full lg:w-[260px] min-w-[240px] lg:min-w-[240px] bg-white p-4 rounded-lg border shadow-sm h-fit">
 
             {/* Header */}
             <div className="flex justify-between items-center mb-4">
@@ -80,6 +80,16 @@ const FilterCard = () => {
                 >
                     Clear
                 </button>
+
+                {/* CLOSE BUTTON */}
+                {isMobile && (
+                    <button
+                        onClick={() => setShowFilters(false)}
+                        className="text-lg font-extrabold cursor-pointer"
+                    >
+                        ✕
+                    </button>
+                )}
             </div>
 
             {/* Filters */}

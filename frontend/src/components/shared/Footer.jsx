@@ -1,51 +1,62 @@
 import React from 'react';
-
+import { NavLink } from 'react-router-dom';
 const Footer = () => {
   return (
-    <footer className="bg-white border-t border-gray-200 mt-20">
-      <div className="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+    <footer className="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 mt-12 sm:mt-16 lg:mt-20">
+      <div className="
+        max-w-7xl 2xl:max-w-[1400px] 
+        mx-auto 
+        px-4 sm:px-6 lg:px-8 
+        py-8 sm:py-10 lg:py-12
+        grid 
+        grid-cols-1 
+        sm:grid-cols-2 
+        md:grid-cols-3 
+        gap-6 sm:gap-8 lg:gap-10
+      ">
 
         {/* BRAND */}
-        <div>
-          <h2 className="text-2xl font-bold">
+        <div className="text-center sm:text-left">
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
             Job<span className="text-[#F83002]">Hunt</span>
           </h2>
-          <p className="text-sm text-gray-500 mt-2">
+          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-2 max-w-xs mx-auto sm:mx-0">
             Find your dream job with ease. Discover opportunities, apply faster, and grow your career.
           </p>
         </div>
 
         {/* LINKS */}
-        <div className="flex flex-col gap-2 text-sm">
-          <h3 className="font-semibold mb-2">Quick Links</h3>
-          <a href="/" className="hover:text-purple-600 transition">Home</a>
-          <a href="/jobs" className="hover:text-purple-600 transition">Jobs</a>
-          <a href="/browse" className="hover:text-purple-600 transition">Browse</a>
-          <a href="/saved" className="hover:text-purple-600 transition">Saved Jobs</a>
+        <div className="flex flex-col items-center sm:items-start gap-2 text-sm">
+          <h3 className="font-semibold mb-2 text-base">Quick Links</h3>
+          <NavLink to="/" className="hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 hover:translate-x-1">Home</NavLink>
+          <NavLink to="/jobs" className="hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 hover:translate-x-1">Jobs</NavLink>
+          <NavLink to="/browse" className="hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 hover:translate-x-1">Browse</NavLink>
+          <NavLink to="/saved" className="hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 hover:translate-x-1">Saved Jobs</NavLink>
         </div>
 
         {/* SOCIAL */}
-        <div>
-          <h3 className="font-semibold mb-2">Connect</h3>
-          <div className="flex gap-4 mt-2">
+        <div className="text-center sm:text-left">
+          <h3 className="font-semibold mb-2 text-base">Connect</h3>
+
+          <div className="flex justify-center sm:justify-start gap-4 mt-2">
 
             {/* Facebook */}
-            <a href="#" className="hover:text-blue-600 transition">
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <a href="#" className="hover:text-blue-600 transition-all duration-300 hover:scale-110">
+              <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M22.676 0H1.324C.593 0 0 .592 0 1.324v21.352C0 23.408.593 24 1.324 24H12.82V14.706H9.692v-3.578h3.128V8.408c0-3.1 1.893-4.787 4.657-4.787 1.325 0 2.463.1 2.794.144v3.238l-1.918.001c-1.503 0-1.794.715-1.794 1.762v2.31h3.587l-.468 3.578h-3.119V24h6.116C23.407 24 24 23.408 24 22.676V1.324C24 .592 23.407 0 22.676 0z" />
               </svg>
             </a>
 
             {/* Twitter */}
-            <a href="#" className="hover:text-sky-500 transition">
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <a href="#" className="hover:text-blue-600 transition-all duration-300 hover:scale-110">
+              <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M24 4.557a9.835 9.835 0 01-2.828.775 4.934 4.934 0 002.165-2.724 9.867 9.867 0 01-3.127 1.195 4.924 4.924 0 00-8.38 4.49A13.978 13.978 0 011.67 3.149 4.93 4.93 0 003.16 9.724a4.903 4.903 0 01-2.229-.616v.062a4.93 4.93 0 003.946 4.827 4.902 4.902 0 01-2.224.084 4.93 4.93 0 004.6 3.417A9.869 9.869 0 010 21.543a13.978 13.978 0 007.548 2.212c9.057 0 14.01-7.507 14.01-14.01 0-.213-.004-.425-.015-.636A10.012 10.012 0 0024 4.557z" />
               </svg>
             </a>
 
             {/* LinkedIn */}
-            <a href="#" className="hover:text-blue-700 transition">
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <a href="#" className="hover:text-blue-600 transition-all duration-300 hover:scale-110">
+              <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M20.447 20.452H16.85v-5.569c0-1.327-.027-3.037-1.852-3.037-1.854 0-2.137 1.446-2.137 2.94v5.666H9.147V9.756h3.448v1.464h.05c.48-.91 1.653-1.871 3.401-1.871 3.634 0 4.307 2.39 4.307 5.498v5.605zM5.337 8.29c-1.105 0-2-.896-2-2 0-1.106.895-2 2-2 1.104 0 2 .895 2 2 0 1.104-.896 2-2 2zM7.119 20.452H3.553V9.756h3.566v10.696z" />
               </svg>
             </a>
@@ -55,7 +66,7 @@ const Footer = () => {
       </div>
 
       {/* BOTTOM */}
-      <div className="border-t border-gray-200 text-center text-sm text-gray-500 py-4">
+      <div className="border-t border-gray-200 dark:border-gray-700 text-center text-xs sm:text-sm text-gray-500 dark:text-gray-400 py-3 sm:py-4">
         © 2026 JobHunt. All rights reserved.
       </div>
     </footer>

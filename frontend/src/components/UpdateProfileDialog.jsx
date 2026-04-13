@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from './ui/dialog'
 import { Label } from './ui/label'
 import { Input } from './ui/input'
@@ -29,10 +29,6 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
         setInput({ ...input, [e.target.name]: e.target.value });
     }
 
-    // const fileChangeHandler = (e) => {
-    //     const file = e.target.files?.[0];
-    //     setInput({ ...input, file })
-    // }
     const fileChangeHandler = (e) => {
         const file = e.target.files?.[0];
         const name = e.target.name;
@@ -79,91 +75,119 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
         console.log(input);
     }
 
+    useEffect(() => {
+        if (open) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "auto";
+        }
 
+        return () => {
+            document.body.style.overflow = "auto";
+        };
+    }, [open]);
 
     return (
         <div>
             <Dialog open={open} onOpenChange={setOpen}>
-                <DialogContent className="sm:max-w-[425px]" onInteractOutside={() => setOpen(false)}>
+                <DialogContent
+                    className="w-[95vw] sm:max-w-[500px] lg:max-w-[650px] xl:max-w-[500px] 2xl:max-w-[600px] z-[9999] rounded-xl xl:mt-12"
+                    onInteractOutside={() => setOpen(false)}
+                >
                     <DialogHeader>
                         <DialogTitle>Update Profile</DialogTitle>
                     </DialogHeader>
                     <form onSubmit={submitHandler}>
                         <div className='grid gap-4 py-4'>
-                            <div className='grid grid-cols-4 items-center gap-4'>
-                                <Label htmlFor="fullname" className="text-right">Name</Label>
+
+                            {/* Name */}
+                            <div className='grid grid-cols-1 sm:grid-cols-4 items-start sm:items-center gap-2 sm:gap-4'>
+                                <Label htmlFor="fullname" className="text-left sm:text-right">Name</Label>
                                 <Input
                                     id="fullname"
                                     name="fullname"
                                     type="text"
                                     value={input.fullname}
                                     onChange={changeEventHandler}
-                                    className="col-span-3"
+                                    className="w-full sm:col-span-3"
                                 />
                             </div>
-                            <div className='grid grid-cols-4 items-center gap-4'>
-                                <Label htmlFor="email" className="text-right">Email</Label>
+
+                            {/* Email */}
+                            <div className='grid grid-cols-1 sm:grid-cols-4 items-start sm:items-center gap-2 sm:gap-4'>
+                                <Label htmlFor="email" className="text-left sm:text-right">Email</Label>
                                 <Input
                                     id="email"
                                     name="email"
                                     type="email"
                                     value={input.email}
                                     onChange={changeEventHandler}
-                                    className="col-span-3"
+                                    className="w-full sm:col-span-3"
                                 />
                             </div>
-                            <div className='grid grid-cols-4 items-center gap-4'>
-                                <Label htmlFor="phoneNumber" className="text-right">Number</Label>
+
+                            {/* Phone */}
+                            <div className='grid grid-cols-1 sm:grid-cols-4 items-start sm:items-center gap-2 sm:gap-4'>
+                                <Label htmlFor="phoneNumber" className="text-left sm:text-right">Number</Label>
                                 <Input
                                     id="phoneNumber"
                                     name="phoneNumber"
                                     value={input.phoneNumber}
                                     onChange={changeEventHandler}
-                                    className="col-span-3"
+                                    className="w-full sm:col-span-3"
                                 />
                             </div>
-                            <div className='grid grid-cols-4 items-center gap-4'>
-                                <Label htmlFor="bio" className="text-right">Bio</Label>
+
+                            {/* Bio */}
+                            <div className='grid grid-cols-1 sm:grid-cols-4 items-start sm:items-center gap-2 sm:gap-4'>
+                                <Label htmlFor="bio" className="text-left sm:text-right">Bio</Label>
                                 <Input
                                     id="bio"
                                     name="bio"
                                     value={input.bio}
                                     onChange={changeEventHandler}
-                                    className="col-span-3"
+                                    className="w-full sm:col-span-3"
                                 />
                             </div>
-                            <div className='grid grid-cols-4 items-center gap-4'>
-                                <Label htmlFor="skills" className="text-right">Skills</Label>
+
+                            {/* Skills */}
+                            <div className='grid grid-cols-1 sm:grid-cols-4 items-start sm:items-center gap-2 sm:gap-4'>
+                                <Label htmlFor="skills" className="text-left sm:text-right">Skills</Label>
                                 <Input
                                     id="skills"
                                     name="skills"
                                     value={input.skills}
                                     onChange={changeEventHandler}
-                                    className="col-span-3"
+                                    className="w-full sm:col-span-3"
                                 />
                             </div>
-                            <div className='grid grid-cols-4 items-center gap-4'>
-                                <Label htmlFor="file" className="text-right">Resume</Label>
+
+                            {/* Resume */}
+                            <div className='grid grid-cols-1 sm:grid-cols-4 items-start sm:items-center gap-2 sm:gap-4'>
+                                <Label htmlFor="file" className="text-left sm:text-right">Resume</Label>
                                 <Input
                                     id="file"
                                     name="file"
                                     type="file"
                                     accept="application/pdf"
                                     onChange={fileChangeHandler}
-                                    className="col-span-3"
+                                    className="w-full sm:col-span-3"
                                 />
                             </div>
-                            <div className='grid grid-cols-4 items-center gap-4'>
-                                <Label htmlFor="profilePhoto" className="text-right">Photo</Label>
+
+                            {/* Photo */}
+                            <div className='grid grid-cols-1 sm:grid-cols-4 items-start sm:items-center gap-2 sm:gap-4'>
+                                <Label htmlFor="profilePhoto" className="text-left sm:text-right">Photo</Label>
                                 <Input
                                     id="profilePhoto"
                                     name="profilePhoto"
                                     type="file"
                                     accept="image/*"
                                     onChange={fileChangeHandler}
-                                    className="col-span-3"
+                                    className="w-full sm:col-span-3"
                                 />
                             </div>
+
                         </div>
                         <DialogFooter>
                             {

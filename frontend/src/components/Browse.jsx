@@ -24,9 +24,8 @@ const Browse = () => {
     return (
 
         <div className="bg-gray-50 min-h-screen">
-            <Navbar />
 
-            <div className="max-w-7xl mx-auto py-8 space-y-8">
+            <div className="max-w-7xl mx-auto py-6 sm:py-8 lg:py-8 px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8">
 
                 {/* Trending */}
                 <Section title="Trending Jobs" jobs={trendingJobs} />

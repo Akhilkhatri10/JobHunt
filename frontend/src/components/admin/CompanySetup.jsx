@@ -111,16 +111,25 @@ const CompanySetup = () => {
     return (
         <div>
             <Navbar />
-            <div className='max-w-xl mx-auto my-10'>
+            <div className='max-w-xl mx-5 sm:mx-auto lg:mx-auto xl:mx-auto'>
                 <form onSubmit={submitHandler}>
-                    <div className='flex items-center gap-5 p-8'>
-                        <Button onClick={() => navigate("/admin/companies")} variant="outline" className="flex items-center gap-2 text-gray-500 font-semibold">
+                    <div className='flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-4 sm:p-6 lg:p-8'>
+
+                        <Button
+                            onClick={() => navigate("/admin/companies")}
+                            variant="outline"
+                            className="flex items-center gap-2 text-gray-500 font-semibold w-fit"
+                        >
                             <ArrowLeft />
                             <span>Back</span>
                         </Button>
-                        <h1 className='font-bold text-xl'>Company Setup</h1>
+
+                        <h1 className='font-bold text-lg sm:text-xl'>
+                            Company Setup
+                        </h1>
+
                     </div>
-                    <div className='grid grid-cols-2 gap-4'>
+                    <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
                         <div>
                             <Label>Company Name</Label>
                             <Input
@@ -128,6 +137,7 @@ const CompanySetup = () => {
                                 name="name"
                                 value={input.name}
                                 onChange={changeEventHandler}
+                                className="w-full"
                             />
                         </div>
 
@@ -138,6 +148,7 @@ const CompanySetup = () => {
                                 name="description"
                                 value={input.description}
                                 onChange={changeEventHandler}
+                                className="w-full"
                             />
                         </div>
 
@@ -148,6 +159,7 @@ const CompanySetup = () => {
                                 name="website"
                                 value={input.website}
                                 onChange={changeEventHandler}
+                                className="w-full"
                             />
                         </div>
 
@@ -158,10 +170,11 @@ const CompanySetup = () => {
                                 name="location"
                                 value={input.location}
                                 onChange={changeEventHandler}
+                                className="w-full"
                             />
                         </div>
 
-                        <div>
+                        <div className="sm:col-span-2">
                             <Label>Logo</Label>
                             {/* New file preview */}
                             {input.file ? (
@@ -189,7 +202,7 @@ const CompanySetup = () => {
                                         changeFileHandler({ target: { files: [file] } });
                                     }
                                 }}
-                                className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-purple-500 transition"
+                                className="border-2 border-dashed border-gray-300 rounded-lg p-4 sm:p-6 text-center cursor-pointer hover:border-purple-500 transition"
                             >
                                 <p className="text-gray-500">
                                     Drag & drop logo here or click to upload
@@ -217,7 +230,7 @@ const CompanySetup = () => {
                         </div>
                     </div>
                     {
-                        loading ? <Button className="w-full my-4"> <Loader2 className='mr-2 h-4 w-4 animate-spin' /> Please wait </Button> : <Button type="submit" className="w-full my-4">Update</Button>
+                        loading ? <Button className="w-full my-4"> <Loader2 className='mr-2 h-4 w-4 animate-spin' /> Please wait </Button> : <Button type="submit" className="w-full my-4 sm:my-6">Update</Button>
                     }
                 </form>
             </div>

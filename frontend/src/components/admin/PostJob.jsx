@@ -112,7 +112,7 @@ const PostJob = () => {
         <div>
             <Navbar />
 
-            <div className="max-w-lg mx-auto my-6">
+            <div className="max-w-lg mx-auto sm:mx-1 md:mx-1 lg:mx-48 my-4 px-4 sm:px-6 lg:px-8">
                 <Button
                     variant="outline"
                     onClick={() => navigate(-1)}
@@ -123,9 +123,12 @@ const PostJob = () => {
                 </Button>
             </div>
 
-            <div className='flex items-center justify-center w-screen my-5'>
-                <form onSubmit={submitHandler} className='p-8 max-w-4xl border border-gray-200 shadow-lg rounded-md'>
-                    <div className='grid grid-cols-2 gap-2'>
+            <div className='flex items-center justify-center w-full my-5 px-4 sm:px-6 lg:px-8'>
+                <form
+                    onSubmit={submitHandler}
+                    className='p-4 sm:p-6 lg:p-8 w-full max-w-4xl border border-gray-200 shadow-lg rounded-md'
+                >
+                    <div className='grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-2'>
                         <div>
                             <Label>Title</Label>
                             <Input
@@ -133,7 +136,7 @@ const PostJob = () => {
                                 name="title"
                                 value={input.title}
                                 onChange={changeEventHandler}
-                                className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
+                                className="w-full focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
                             />
                         </div>
                         <div>
@@ -143,7 +146,7 @@ const PostJob = () => {
                                 name="description"
                                 value={input.description}
                                 onChange={changeEventHandler}
-                                className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
+                                className="w-full focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
                             />
                         </div>
                         <div>
@@ -153,7 +156,7 @@ const PostJob = () => {
                                 name="requirements"
                                 value={input.requirements}
                                 onChange={changeEventHandler}
-                                className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
+                                className="w-full focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
                             />
                         </div>
                         <div>
@@ -163,7 +166,7 @@ const PostJob = () => {
                                 name="salary"
                                 value={input.salary}
                                 onChange={changeEventHandler}
-                                className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
+                                className="w-full focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
                             />
                         </div>
                         <div>
@@ -173,7 +176,7 @@ const PostJob = () => {
                                 name="location"
                                 value={input.location}
                                 onChange={changeEventHandler}
-                                className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
+                                className="w-full focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
                             />
                         </div>
                         <div>
@@ -183,7 +186,7 @@ const PostJob = () => {
                                 name="jobType"
                                 value={input.jobType}
                                 onChange={changeEventHandler}
-                                className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
+                                className="w-full focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
                             />
                         </div>
                         <div>
@@ -193,7 +196,7 @@ const PostJob = () => {
                                 name="experience"
                                 value={input.experience}
                                 onChange={changeEventHandler}
-                                className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
+                                className="w-full focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
                             />
                         </div>
                         <div>
@@ -203,7 +206,7 @@ const PostJob = () => {
                                 name="position"
                                 value={input.position}
                                 onChange={changeEventHandler}
-                                className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
+                                className="w-full focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
                             />
                         </div>
                         {
@@ -212,7 +215,7 @@ const PostJob = () => {
                                     value={input.companyId}
                                     onValueChange={selectChangeHandler}
                                 >
-                                    <SelectTrigger className="w-[180px]">
+                                    <SelectTrigger className="w-full sm:w-[180px]">
                                         <SelectValue placeholder="Select a Company" />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -234,7 +237,7 @@ const PostJob = () => {
                             )
                         }
                     </div>
-                    <Button type="submit" className="w-full my-4">
+                    <Button type="submit" className="w-full my-4 sm:my-6">
                         {loading ? (
                             <Loader2 className='mr-2 h-4 w-4 animate-spin' />
                         ) : (

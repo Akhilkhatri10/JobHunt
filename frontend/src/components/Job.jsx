@@ -56,7 +56,7 @@ const Job = ({ job }) => {
     }
 
     return (
-        <div className='p-5 rounded-md shadow-md bg-white border border-gray-100 flex flex-col justify-between h-full transition-all duration-300 ease-in-out hover:shadow-2xl hover:-translate-y-2 hover:scale-[1.02] hover:border-purple-300 cursor-pointer'>
+        <div className='p-4 sm:p-5 rounded-md shadow-md bg-white border border-gray-100 flex flex-col justify-between h-full transition-all duration-300 ease-in-out hover:shadow-2xl hover:-translate-y-2 hover:scale-[1.02] hover:border-purple-300 cursor-pointer'>
 
             {/* CHILD 1: ALL CONTENT */}
             <div className='flex flex-col'>
@@ -86,13 +86,13 @@ const Job = ({ job }) => {
                         </Avatar>
                     </Button>
                     <div>
-                        <h1 className='font-medium text-lg'>{job?.company?.name}</h1>
+                        <h1 className='font-medium text-base sm:text-lg'>{job?.company?.name}</h1>
                         <p className='text-sm text-gray-500'>India</p>
                     </div>
                 </div>
 
                 <div>
-                    <h1 className='font-bold text-lg my-2'>{job?.title}</h1>
+                    <h1 className='font-bold text-base sm:text-lg my-2'>{job?.title}</h1>
                     <p className='text-sm text-gray-600 line-clamp-3'>
                         {job?.description}
                     </p>

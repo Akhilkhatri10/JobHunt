@@ -3,7 +3,7 @@ import Navbar from './shared/Navbar'
 import FilterCard from './FilterCard'
 import Job from './Job';
 import { useSelector } from 'react-redux';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const normalize = (str) => str?.trim().toLowerCase();
@@ -42,6 +42,7 @@ const matchSalary = (jobSalary, salary) => {
 const Jobs = () => {
     const { allJobs, searchedQuery } = useSelector(store => store.job);
     const [filterJobs, setFilterJobs] = useState(allJobs);
+    const [showFilters, setShowFilters] = useState(false);
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -85,18 +86,16 @@ const Jobs = () => {
 
     return (
         <div>
-            <Navbar />
             <div className='max-w-7xl mx-auto mt-5'>
-                <div className='flex gap-5'>
-                    {/* <div className='w-20% sticky top-20 h-fit'> */}
-                    <div className='w-[260px] shrink-0'>
-                        <FilterCard />
+                <div className='flex flex-col lg:flex-row gap-5'>
+                    <div className='hidden lg:block w-[260px] shrink-0'>
+                        <FilterCard isMobile={false} />
                     </div>
 
                     <div className='flex-1 p-5'>
 
                         {/* ALWAYS SHOW THIS */}
-                        <div className="flex justify-between items-center mb-4">
+                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-4">
 
                             <h2 className="text-2xl font-semibold">
                                 {searchQuery
@@ -104,24 +103,31 @@ const Jobs = () => {
                                     : "All Jobs"}
                             </h2>
 
-                            <input
-                                type="text"
-                                placeholder="Search jobs, companies, locations..."
-                                value={searchQuery}
-                                onChange={(e) => {
-                                    const value = e.target.value;
-                                    const params = new URLSearchParams(location.search);
+                            <div className="flex gap-2 w-full sm:w-auto">
+                                {/* FILTER BUTTON (only mobile) */}
+                                <button
+                                    onClick={() => setShowFilters(true)}
+                                    className="lg:hidden px-4 py-2 border rounded-full text-sm"
+                                >
+                                    Filters
+                                </button>
 
-                                    if (value) {
-                                        params.set("search", value);
-                                    } else {
-                                        params.delete("search");
-                                    }
+                                <input
+                                    type="text"
+                                    placeholder="Search jobs..."
+                                    value={searchQuery}
+                                    onChange={(e) => {
+                                        const value = e.target.value;
+                                        const params = new URLSearchParams(location.search);
 
-                                    navigate(`?${params.toString()}`);
-                                }}
-                                className="w-[320px] px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-200"
-                            />
+                                        if (value) params.set("search", value);
+                                        else params.delete("search");
+
+                                        navigate(`?${params.toString()}`);
+                                    }}
+                                    className="w-full sm:w-[300px] md:w-[320px] px-4 py-2 border rounded-full"
+                                />
+                            </div>
 
                         </div>
 
@@ -144,7 +150,7 @@ const Jobs = () => {
                                     </p>
                                 </div>
                             ) : (
-                                <div className='grid grid-cols-3 gap-4 auto-rows-fr'>
+                                <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 auto-rows-fr'>
                                     {filterJobs.map((job) => (
                                         <motion.div
                                             initial={{ opacity: 0, x: 100 }}
@@ -164,6 +170,40 @@ const Jobs = () => {
                 </div>
             </div>
 
+            {/* MOBILE FILTER DRAWER */}
+            <AnimatePresence>
+                {showFilters && (
+                    <div className="fixed inset-0 z-50 flex">
+
+                        {/* BACKDROP */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 0.4 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="flex-1 bg-black/40 backdrop-blur-sm"
+                            onClick={() => setShowFilters(false)}
+                        />
+
+                        {/* DRAWER (RIGHT SIDE) */}
+                        <motion.div
+                            initial={{ x: "100%" }}
+                            animate={{ x: 0 }}
+                            exit={{ x: "100%" }}
+                            transition={{ type: "tween", duration: 0.3, ease: "easeOut" }}
+                            className="w-[75%] max-w-[320px] bg-white h-full p-4 overflow-y-auto shadow-xl"
+                        >
+                            <div className="flex justify-between items-center my-6">
+                                <h2 className="font-semibold">Filters</h2>
+                                <button onClick={() => setShowFilters(false)}>✕</button>
+                            </div>
+
+                            <FilterCard isMobile={true} setShowFilters={setShowFilters} />
+                        </motion.div>
+
+                    </div>
+                )}
+            </AnimatePresence>
 
         </div>
     )

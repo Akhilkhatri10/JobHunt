@@ -20,18 +20,35 @@ const CategoryCarousel = () => {
     };
 
     return (
-        <div>
-            <Carousel className="w-full max-w-2xl mx-auto">
-                <CarouselContent>
+        <div className="px-4 sm:px-6 lg:px-8 my-6 sm:my-8 lg:my-10">
+            <Carousel className="w-full max-w-2xl lg:max-w-4xl 2xl:max-w-6xl mx-auto">
+
+                <CarouselContent className="-ml-2 sm:-ml-4">
                     {category.map((cat, index) => (
                         <CarouselItem
                             key={index}
-                            className="md:basis-1/2 lg:basis-1/3 flex justify-center"
+                            className="
+                                pl-2 sm:pl-4
+                                basis-1/2 
+                                sm:basis-1/2 
+                                md:basis-1/3 
+                                lg:basis-1/3 
+                                2xl:basis-1/4
+                                flex justify-center
+                            "
                         >
                             <Button
                                 onClick={() => searchJobHandler(cat)}
                                 variant="outline"
-                                className="rounded-full px-6 py-2 hover:bg-purple-600 hover:text-white transition-all duration-300"
+                                className="
+                                    rounded-full 
+                                    px-4 sm:px-5 lg:px-6 
+                                    py-1.5 sm:py-2 
+                                    text-xs sm:text-sm lg:text-base
+                                    whitespace-nowrap
+                                    hover:bg-purple-600 hover:text-white 
+                                    transition-all duration-300
+                                "
                             >
                                 {cat}
                             </Button>
@@ -39,8 +56,12 @@ const CategoryCarousel = () => {
                     ))}
                 </CarouselContent>
 
-                <CarouselPrevious />
-                <CarouselNext />
+                {/* Controls */}
+                <div className="hidden sm:block">
+                    <CarouselPrevious />
+                    <CarouselNext />
+                </div>
+
             </Carousel>
         </div>
     )

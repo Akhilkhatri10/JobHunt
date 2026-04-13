@@ -5,23 +5,27 @@ import Job from './Job';
 
 const SavedJobs = () => {
     const { user } = useSelector(store => store.auth);
-    console.log(user?.savedJobs);
     const savedJobs = user?.savedJobs || [];
 
     return (
         <div>
-            <Navbar />
-
-            <div className='max-w-7xl mx-auto mt-5'>
-                <h1 className='text-2xl font-bold mb-5'>
+            <div className='max-w-7xl mx-auto mt-5 px-4 sm:px-6 lg:px-8'>
+                <h1 className='text-xl sm:text-2xl font-bold mb-5'>
                     Saved Jobs ({savedJobs.length})
                 </h1>
 
                 {
                     savedJobs.length === 0 ? (
-                        <p className='text-gray-500'>No saved jobs yet.</p>
+                        <p className='text-gray-500 text-sm sm:text-base'>
+                            No saved jobs yet.
+                        </p>
                     ) : (
-                        <div className='grid grid-cols-3 gap-4'>
+                        <div className='grid 
+                            grid-cols-1 
+                            sm:grid-cols-2 
+                            xl:grid-cols-3 
+                            2xl:grid-cols-4 
+                            gap-4'>
                             {
                                 savedJobs.map((job) => (
                                     <Job key={job._id} job={job} />
