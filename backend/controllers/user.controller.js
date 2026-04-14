@@ -8,6 +8,9 @@ export const register = async (req, res) => {
     try {
         const { fullname, email, phoneNumber, password, role } = req.body;
 
+        console.log("BODY:", req.body);
+        console.log("FILES:", req.files);
+
         if (!fullname || !email || !phoneNumber || !password || !role) {
             return res.status(400).json({
                 message: "Something is missing",
@@ -18,7 +21,7 @@ export const register = async (req, res) => {
         // const fileUri = getDataUri(file);
         // const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
 
-        const file = req.file;
+        const file = req.files?.file?.[0];
 
         let fileUri;
         if (file) {
@@ -47,7 +50,7 @@ export const register = async (req, res) => {
             password: hashedPassword,
             role,
             profile: {
-                profilePhoto: cloudResponse.secure_url,
+                profilePhoto: cloudResponse?.secure_url || "",
             }
         });
 
@@ -57,6 +60,10 @@ export const register = async (req, res) => {
         });
     } catch (error) {
         console.log(error);
+        return res.status(500).json({
+            message: "Something went wrong",
+            success: false
+        });
     }
 }
 

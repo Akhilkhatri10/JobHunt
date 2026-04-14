@@ -13,18 +13,24 @@ dotenv.config({});
 const app = express();
 
 // middleware
-app.use(express.json());
-app.use(express.urlencoded({extended:true}));
-app.use(cookieParser());
 const corsOptions = {
   origin: [
     "http://localhost:5173",
     "https://job-hunt-beta.vercel.app"
   ],
-  credentials: true
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Add other methods if needed
+  allowedHeaders: ["Content-Type", "Authorization"] // Add other headers if needed
 };
 
 app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));  // enable pre-flight for all routes
+
+
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+app.use(cookieParser());
+
 
 const PORT = process.env.PORT || 3000;
 
